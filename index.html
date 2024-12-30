@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="Home.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Home</title>
+    <link rel="stylesheet" id="mob">
+    <link rel="icon" type="image/svg" href="Home.svg">
+    <style>
+        /* Positioning the designer label */
+        #designer {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            animation: fadeIn 2s ease-in-out infinite alternate, moveUpDown 5s ease-in-out infinite;
+        }
+
+        /* Fade in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0.5;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Move up and down animation */
+        @keyframes moveUpDown {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* styles.css */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .translate-dialog {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            background: #000000;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out, zoomIn 1s ease-in-out;
+            width: 250px;
+            z-index: 10;
+        }
+
+        .translate-dialog h3 {
+            margin: 0 0 15px;
+            text-align: center;
+        }
+
+        .translate-dialog select,
+        .translate-dialog textarea,
+        .translate-dialog button {
+            width: calc(100% - 22px);
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #2c2b2b;
+            border-radius: 5px;
+        }
+
+        .translate-dialog button {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .translate-dialog button:hover {
+            background: #0056b3;
+            zoom: 1;
+        }
+
+        .translate-dialog button:active {
+            animation: fadeIn 1s ease-in-out, zoomIn 1s ease-in-out;
+        }
+
+        @keyframes flash {
+            0% {
+                background-color: #ff0;
+            }
+            50% {
+                background-color: #000000;
+            }
+            100% {
+                background-color: #ff0;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body id="body">
+    <div id="clock">
+        <span id="analog">
+            <center id="t">12</center>
+            <div id="hr" class="hand"></div>
+            <div id="min" class="hand"></div>
+            <div id="sec" class="hand"></div>
+            <div id="center"></div>
+            <span id="s">9</span>
+            <span id="th">3</span>
+            <span id="n">6</span>
+        </span>
+        <i id="digi"></i>
+        <span id="wish"></span>
+    </div>
+    <div class="translate-dialog">
+        <h3>Quick Translate</h3>
+        <select id="sourceLang">
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="zh-CN">Chinese</option>
+            <option value="ja">Japanese</option>
+        </select>
+        <select id="targetLang">
+            <option value="es">Spanish</option>
+            <option value="en">English</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="zh-CN">Chinese</option>
+            <option value="ja">Japanese</option>
+        </select>
+        <textarea id="sourceText" placeholder="Enter text here..."></textarea>
+        <button onclick="translateText()">Translate</button>
+        <textarea id="translatedText" placeholder="Translated text..." readonly></textarea>
+    </div>
+    <center id="sw">
+        <center id="swoogle">RAJoogle</center>
+        <form autocomplete="on" onsubmit="return false" id="srch">
+            <input type="search" placeholder="RAJoogle search..." id="q" required>
+        </form>
+        <center>
+            <button onclick="mic()"><sub class="icon">mic</sub> Mic</button>
+            <button onclick="paste()"><sub class="icon">content_paste</sub> Paste</button>
+        </center>
+    </center>
+
+    <div id="apps">
+        <a href="https://chat.openai.com/" target="_blank"><img src="ChatGPT.svg" alt="ChatGPT"> ChadGPT</a>
+        <a href="https://www.youtube.com/" target="_blank"><img src="YouTube.svg" alt="YouTube"> YouTube</a>
+        <a href="https://bard.google.com/" target="_blank"><img src="Bard.svg" alt="Gemini"> Gemini AI</a>
+        <a href="https://codepen.io/" target="_blank"><img src="Codepen.svg" alt="Codepen"> Codepen</a>
+        <a href="https://github.com/" target="_blank"><img src="GitHub.svg" alt="GitHub"> GitHub</a>
+        <a href="https://www.msn.com/en-in/weather/maps/precipitation/in-Kolkata,West-Bengal" target="_blank"><img
+                src="Weather.svg" alt="MSN"> Weather</a>
+        <a href="https://www.bing.com/create" target="_blank"><img src="Bing.svg" alt="Bing Image Creator"> Bing Image
+            Creator</a>
+        <a href="https://pw.live/" target="_blank"><img src="Physics Wallah.svg" alt="Physics Wallah"> Physics
+            Wallah</a>
+        <a href="https://www.bing.com/search?q=Bing+AI&showconv=1&FORM=hpcodx" target="_blank"><img src="Bing AI.svg"
+                alt="Bing AI"> Bing AI</a>
+    </div>
+
+    <form id="calc" autocomplete="on" onsubmit="return false" onclick="c.focus()">
+        <input placeholder="0" required id="c">
+        <div id="key">
+            <span onclick="cal(this.innerHTML)">0</span>
+            <span onclick="cal(this.innerHTML)" id="o">.</span>
+            <span onclick="back()" class="icon" style="background: orange;">backspace</span>
+            <input type="reset" value="C" style="background: orangered;">
+            <span onclick="cal(this.innerHTML)">1</span>
+            <span onclick="cal(this.innerHTML)">2</span>
+            <span onclick="cal(this.innerHTML)">3</span>
+            <span onclick="cal(this.innerHTML)" id="o">+</span>
+            <span onclick="cal(this.innerHTML)">4</span>
+            <span onclick="cal(this.innerHTML)">5</span>
+            <span onclick="cal(this.innerHTML)">6</span>
+            <span onclick="cal(this.innerHTML)" id="o">-</span>
+            <span onclick="cal(this.innerHTML)">7</span>
+            <span onclick="cal(this.innerHTML)">8</span>
+            <span onclick="cal(this.innerHTML)">9</span>
+            <span onclick="cal(this.innerHTML)" id="o">*</span>
+            <span onclick="cal(this.innerHTML)" id="o">(</span>
+            <span onclick="cal(this.innerHTML)" id="o">)</span>
+            <span onclick="cal(this.innerHTML)" id="o">/</span>
+            <input type="submit" value="=" style="background: #dcb8ff;">
+        </div>
+    </form>
+
+    <form id="chem" autocomplete="on" onsubmit="return false">
+        <h1 style="margin-top: 0;">
+            <center>Balance Chem Eq<sup>n</sup></center>
+        </h1>
+        <input placeholder="Skeletal Eq^n" id="sce" required>
+        <div id="btns" style="display: grid; grid-template-columns: 1fr 1fr;">
+            <input type="button" value="Random"
+                onclick="al.style.height = '7ch'; al.style.padding = '2ch'; chem.style.height = '40vh'; doRandom()">
+            <input type="submit" value="Balance">
+        </div>
+        <div id="al">
+            <div id="rslt"></div>
+            <div id="msg"></div>
+            <div id="code"></div>
+        </div>
+    </form>
+    <div id="grad"></div>
+    <div id="designer">Designed by Rajibul</div>
+    <script src="Home.js"></script>
+    <script src="particles.js"></script>
+    <script src="app.js" defer></script>
+    <script src="script.js"></script>
+    <script>
+function translateText() {
+  const sourceLang = document.getElementById('sourceLang').value;
+  const targetLang = document.getElementById('targetLang').value;
+  const sourceText = document.getElementById('sourceText').value;
+  const translatedText = document.getElementById('translatedText');
+
+  const serverURL = "https://api.funtranslations.com/translate/minion.json";
+
+  function getTranslationURL(input) {
+    return serverURL + "?" + "text=" + input;
+  }
+
+  function errorHandler(error) {
+    console.log("error occured", error);
+    alert("something went wrong with server! try again after sometime");
+  }
+
+  fetch(getTranslationURL(sourceText))
+    .then(response => response.json())
+    .then(json => {
+      const translatedTextValue = json.contents.translated;
+      translatedText.value = translatedTextValue;
+
+      // Set the language direction and font family based on the target language
+      switch (targetLang) {
+        case 'ar': // Arabic
+          translatedText.style.direction = 'rtl';
+          translatedText.style.fontFamily = 'Arial, Tahoma, sans-serif';
+          break;
+        case 'zh-CN': // Chinese (Simplified)
+          translatedText.style.fontFamily = 'SimSun, sans-serif';
+          break;
+        case 'ja': // Japanese
+          translatedText.style.fontFamily = 'MS Gothic, sans-serif';
+          break;
+        case 'ko': // Korean
+          translatedText.style.fontFamily = 'Malgun Gothic, sans-serif';
+          break;
+        case 'hi': // Hindi
+          translatedText.style.direction = 'rtl';
+          translatedText.style.fontFamily = 'Mangal, sans-serif';
+          break;
+        default: // Other languages
+          translatedText.style.direction = 'ltr';
+          translatedText.style.fontFamily = 'Arial, sans-serif';
+      }
+    })
+    .catch(errorHandler);
+}
+    </script>
+</body>
+
+</html>
